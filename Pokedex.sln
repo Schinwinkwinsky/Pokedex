@@ -1,27 +1,26 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32519.111
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9997C9F3-2AA5-41C4-983B-B29690E223EC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pokedex.Maui", "src\Pokedex.Maui\Pokedex.Maui.csproj", "{3B57737A-77E3-4504-8C8D-78DD9FCE2960}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pokedex.Maui", "src\Pokedex.Maui\Pokedex.Maui.csproj", "{3B57737A-77E3-4504-8C8D-78DD9FCE2960}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{3B57737A-77E3-4504-8C8D-78DD9FCE2960}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3B57737A-77E3-4504-8C8D-78DD9FCE2960}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B57737A-77E3-4504-8C8D-78DD9FCE2960}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{3B57737A-77E3-4504-8C8D-78DD9FCE2960}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B57737A-77E3-4504-8C8D-78DD9FCE2960}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{3B57737A-77E3-4504-8C8D-78DD9FCE2960} = {9997C9F3-2AA5-41C4-983B-B29690E223EC}
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4AECA8CC-7D9F-44AE-88F8-C19334F91904}
 	EndGlobalSection
 EndGlobal
