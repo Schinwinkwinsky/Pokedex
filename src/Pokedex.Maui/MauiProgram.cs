@@ -1,4 +1,8 @@
-﻿namespace Pokedex.Maui;
+﻿using Pokedex.Maui.Services;
+using Pokedex.Maui.ViewModels;
+using Pokedex.Maui.Views;
+
+namespace Pokedex.Maui;
 
 public static class MauiProgram
 {
@@ -13,6 +17,15 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
-		return builder.Build();
+        // Services
+        builder.Services.AddSingleton<IPokeApiService, PokeApiService>();		
+
+		// ViewModels
+		builder.Services.AddSingleton<PokemonsPageViewModel>();
+
+        // Views
+        builder.Services.AddSingleton<PokemonsPage>();
+
+        return builder.Build();
 	}
 }
