@@ -16,15 +16,6 @@ public partial class PokemonsPage : ContentPage
 
     protected override async void OnAppearing()
     {
-        try
-        {
-            await _viewModel.SetPokemons();
-        }
-        catch (Exception)
-        {
-            await DisplayAlert("Ops", "It was not possible to load pokemons. Scroll down to try again.", "OK");
-
-            throw;
-        }
+		await _viewModel.InitializePokemons();
     }
 }

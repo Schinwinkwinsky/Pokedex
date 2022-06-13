@@ -14,20 +14,32 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <CollectionView ItemsSource="{Binding Pokemons}"
-                    ItemsLayout="VerticalGrid, 2">
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="pokeApi:Pokemon">
-                <Grid Padding="10">
-                    <StackLayout>
-                        <Image Source="{Binding Sprites.Other.OfficialArtwork.FrontDefault}"/>
-                        <Label Text="{Binding Name, Converter={StaticResource CapitalizeConverter}}"
-                               HorizontalTextAlignment="Center"
-                               FontFamily="LobsterRegular"
-                               FontSize="Medium"/>
-                    </StackLayout>
-                </Grid>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+    <Grid>
+        <RefreshView Command="{Binding RefreshPokemonsCommand}" 
+                     IsRefreshing="{Binding IsRefreshing}">
+            <CollectionView ItemsSource="{Binding Pokemons}"
+                            ItemsLayout="VerticalGrid, 2"
+                            RemainingItemsThreshold="10"
+                            RemainingItemsThresholdReachedCommand="{Binding GetPokemonsCommand}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="pokeApi:Pokemon">
+                        <Grid Padding="10">
+                            <StackLayout>
+                                <Image Source="{Binding Sprites.Other.OfficialArtwork.FrontDefault}"/>
+                                <Label Text="{Binding Name, Converter={StaticResource CapitalizeConverter}}"
+                                       HorizontalTextAlignment="Center"
+                                       FontFamily="LobsterRegular"
+                                       FontSize="Medium"/>
+                            </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+
+        <ActivityIndicator IsVisible="{Binding IsBusy}" 
+                           IsRunning="{Binding IsBusy}" 
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+    </Grid>    
 </ContentPage>
