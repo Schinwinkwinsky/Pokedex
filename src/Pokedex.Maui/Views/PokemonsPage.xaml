@@ -3,21 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:Pokedex.Maui.ViewModels"
              xmlns:pokeApi="clr-namespace:PokeApiNet;assembly=PokeApiNet"
+             xmlns:helpers="clr-namespace:Pokedex.Maui.Helpers"
              x:DataType="viewModels:PokemonsPageViewModel"
              x:Class="Pokedex.Maui.Views.PokemonsPage"
              Title="{Binding Title}">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <helpers:CapitalizeConverter x:Key="CapitalizeConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <CollectionView ItemsSource="{Binding Pokemons}"
-                    ItemsLayout="VerticalGrid, 2"
-                    >
+                    ItemsLayout="VerticalGrid, 2">
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="pokeApi:Pokemon">
                 <Grid Padding="10">
                     <StackLayout>
                         <Image Source="{Binding Sprites.Other.OfficialArtwork.FrontDefault}"/>
-                        <Label Text="{Binding Name}"
-                               TextTransform="Uppercase"
-                               HorizontalTextAlignment="Center"/>
+                        <Label Text="{Binding Name, Converter={StaticResource CapitalizeConverter}}"
+                               HorizontalTextAlignment="Center"
+                               FontFamily="LobsterRegular"
+                               FontSize="Medium"/>
                     </StackLayout>
                 </Grid>
             </DataTemplate>
