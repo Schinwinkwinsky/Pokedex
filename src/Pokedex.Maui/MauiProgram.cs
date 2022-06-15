@@ -1,4 +1,5 @@
-﻿using Pokedex.Maui.Services;
+﻿using CommunityToolkit.Maui;
+using Pokedex.Maui.Services;
 using Pokedex.Maui.ViewModels;
 using Pokedex.Maui.Views;
 
@@ -17,6 +18,9 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 				fonts.AddFont("Lobster-Regular.ttf", "LobsterRegular");
 			});
+
+        // Initialize MauiToolkit
+        builder.UseMauiApp<App>().UseMauiCommunityToolkit();
 
         // Services
         builder.Services.AddSingleton<IPokeApiService, PokeApiService>();		

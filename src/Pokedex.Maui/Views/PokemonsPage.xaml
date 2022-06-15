@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewModels="clr-namespace:Pokedex.Maui.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:pokeApi="clr-namespace:PokeApiNet;assembly=PokeApiNet"
-             xmlns:helpers="clr-namespace:Pokedex.Maui.Helpers"
+             xmlns:viewModels="clr-namespace:Pokedex.Maui.ViewModels"
              x:DataType="viewModels:PokemonsPageViewModel"
              x:Class="Pokedex.Maui.Views.PokemonsPage"
              Title="{Binding Title}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <helpers:CapitalizeConverter x:Key="CapitalizeConverter"/>
+            <toolkit:TextCaseConverter x:Key="TextCaseConverter" Type="FirstUpperRestLower"/>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -19,14 +19,14 @@
                      IsRefreshing="{Binding IsRefreshing}">
             <CollectionView ItemsSource="{Binding Pokemons}"
                             ItemsLayout="VerticalGrid, 2"
-                            RemainingItemsThreshold="10"
+                            RemainingItemsThreshold="0"
                             RemainingItemsThresholdReachedCommand="{Binding GetPokemonsCommand}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="pokeApi:Pokemon">
                         <Grid Padding="10">
                             <StackLayout>
                                 <Image Source="{Binding Sprites.Other.OfficialArtwork.FrontDefault}"/>
-                                <Label Text="{Binding Name, Converter={StaticResource CapitalizeConverter}}"
+                                <Label Text="{Binding Name, Converter={StaticResource TextCaseConverter}}"
                                        HorizontalTextAlignment="Center"
                                        FontFamily="LobsterRegular"
                                        FontSize="Medium"/>
