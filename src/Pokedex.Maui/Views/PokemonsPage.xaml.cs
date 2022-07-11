@@ -14,7 +14,7 @@ public partial class PokemonsPage : ContentPage
 		BindingContext = viewModel;
 	}
 
-    protected override async void OnAppearing()
+	protected override async void OnNavigatedTo(NavigatedToEventArgs args)
     {
 		await _viewModel.InitializePokemons();
     }

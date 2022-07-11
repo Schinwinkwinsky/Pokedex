@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using PokeApiNet;
 using Pokedex.Maui.Services;
+using Pokedex.Maui.Views;
 using System.Collections.ObjectModel;
 
 namespace Pokedex.Maui.ViewModels
@@ -10,12 +11,15 @@ namespace Pokedex.Maui.ViewModels
     {
         private readonly IPokeApiService _pokeApiService;
 
-        private int _defaultLimit = 30;
+        private int _defaultLimit = 20;
+
+        [ObservableProperty]
+        private Pokemon _selectedPokemon;
 
         [ObservableProperty]
         private bool _isRefreshing;
 
-        public ObservableCollection<Pokemon> Pokemons { get; private set; } = new();
+        public ObservableCollection<Pokemon> Pokemons { get; } = new();
 
         public PokemonsPageViewModel(IPokeApiService pokeApiService)
         {
@@ -24,14 +28,17 @@ namespace Pokedex.Maui.ViewModels
             _pokeApiService = pokeApiService;
         }
 
-        [ICommand]
+        [RelayCommand]
         public async Task InitializePokemons()
         {
+            if (Pokemons.Any())
+                return;
+
             try
             {
                 IsBusy = true;
 
-                await PullPokemons(_defaultLimit, true);
+                await PullPokemons(_defaultLimit);
             }
             catch (Exception)
             {
@@ -43,7 +50,7 @@ namespace Pokedex.Maui.ViewModels
             }
         }
 
-        [ICommand]
+        [RelayCommand]
         public async Task RefreshPokemons()
         {
             try
@@ -62,7 +69,7 @@ namespace Pokedex.Maui.ViewModels
             }
         }
 
-        [ICommand]
+        [RelayCommand]
         public async Task GetPokemons()
         {
             try
@@ -80,6 +87,21 @@ namespace Pokedex.Maui.ViewModels
             {
                 IsBusy = false;
             }
+        }
+
+        [RelayCommand]
+        public async Task GoToPokemonDetail(Pokemon pokemon)
+        {
+            if (pokemon is null)
+                return;
+
+            await Shell.Current.GoToAsync($"{nameof(PokemonDetailPage)}", true,
+                new Dictionary<string, object>
+                {
+                    {"Pokemon", pokemon}
+                });
+
+            SelectedPokemon = null;
         }
 
         private async Task PullPokemons(int limit, bool clearPokemonsList = false)

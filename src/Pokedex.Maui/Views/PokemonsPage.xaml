@@ -43,19 +43,21 @@
                      IsRefreshing="{Binding IsRefreshing}">
             <CollectionView ItemsSource="{Binding Pokemons}"
                             ItemsLayout="VerticalGrid, 2"
+                            SelectionMode="Single"
+                            SelectedItem="{Binding SelectedPokemon}"
+                            SelectionChangedCommand="{Binding GoToPokemonDetailCommand}"
+                            SelectionChangedCommandParameter="{Binding SelectedPokemon}"
                             RemainingItemsThreshold="4"
                             RemainingItemsThresholdReachedCommand="{Binding GetPokemonsCommand}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="pokeApi:Pokemon">
-                        <Grid Padding="10">
-                            <StackLayout>
-                                <Image Source="{Binding Sprites.Other.OfficialArtwork.FrontDefault}"/>
-                                <Label Text="{Binding Name, Converter={StaticResource TextCaseConverter}}"
-                                       HorizontalTextAlignment="Center"
-                                       FontFamily="LobsterRegular"
-                                       FontSize="Medium"/>
-                            </StackLayout>
-                        </Grid>
+                        <StackLayout Padding="10">
+                            <Image Source="{Binding Sprites.Other.OfficialArtwork.FrontDefault}"/>
+                            <Label Text="{Binding Name, Converter={StaticResource TextCaseConverter}}"
+                                   HorizontalTextAlignment="Center"
+                                   FontFamily="LobsterRegular"
+                                   FontSize="Medium"/>
+                        </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

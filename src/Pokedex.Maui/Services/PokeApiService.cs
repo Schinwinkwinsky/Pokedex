@@ -13,5 +13,13 @@ namespace Pokedex.Maui.Services
                 return await client.GetResourceAsync<Pokemon>(pokemonsPage.Results);
             }
         }
+
+        public async Task<PokemonSpecies> GetSpecies(Pokemon pokemon)
+        {
+            using (var client = new PokeApiClient())
+            {
+                return await client.GetResourceAsync<PokemonSpecies>(pokemon.Species);
+            }
+        }
     }
 }
