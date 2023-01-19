@@ -52,7 +52,8 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="pokeApi:Pokemon">
                         <StackLayout Padding="10">
-                            <Image Source="{Binding Sprites.Other.OfficialArtwork.FrontDefault}"/>
+                            <Image Source="{Binding Sprites.Other.OfficialArtwork.FrontDefault}"
+                                   MinimumHeightRequest="50"/>
                             <Label Text="{Binding Name, Converter={StaticResource TextCaseConverter}}"
                                    HorizontalTextAlignment="Center"
                                    FontFamily="LobsterRegular"
