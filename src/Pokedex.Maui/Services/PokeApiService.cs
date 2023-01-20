@@ -1,4 +1,5 @@
 ﻿using PokeApiNet;
+using Type = PokeApiNet.Type;
 
 namespace Pokedex.Maui.Services
 {
@@ -14,11 +15,19 @@ namespace Pokedex.Maui.Services
             }
         }
 
-        public async Task<PokemonSpecies> GetSpecies(Pokemon pokemon)
+        public async Task<PokemonSpecies> GetPokemonSpecies(Pokemon pokemon)
         {
             using (var client = new PokeApiClient())
             {
                 return await client.GetResourceAsync<PokemonSpecies>(pokemon.Species);
+            }
+        }
+
+        public async Task<IEnumerable<Type>> GetPokemonTypes(Pokemon pokemon)
+        {
+            using (var client = new PokeApiClient())
+            {
+                return await client.GetResourceAsync(pokemon.Types.Select(t => t.Type));
             }
         }
     }

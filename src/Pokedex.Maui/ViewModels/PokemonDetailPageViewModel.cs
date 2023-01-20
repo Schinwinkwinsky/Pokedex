@@ -13,21 +13,21 @@ namespace Pokedex.Maui.ViewModels
         private Pokemon _pokemon;
 
         [ObservableProperty]
-        public string _species = String.Empty;
+        public string _types = String.Empty;
 
         public PokemonDetailPageViewModel(IPokeApiService pokeApiService)
         {
             _pokeApiService = pokeApiService;
         }
 
-        public async Task GetPokemonSpecies()
+        public async Task GetPokemonTypes()
         {
-            var species = await _pokeApiService.GetSpecies(Pokemon);
+            var types = await _pokeApiService.GetPokemonTypes(Pokemon);
 
-            species.EggGroups.ForEach(eg => Species = $"{Species}, {eg.Name.ToUpper()[0]}{eg.Name.Substring(1)}");
+            types.ToList().ForEach(t => Types = $"{Types}, {t.Name.ToUpper()[0]}{t.Name.Substring(1)}");
 
-            if (Species.Length > 1)
-                Species = Species.Remove(0, 2);
+            if (Types.Length > 1)
+                Types = Types.Remove(0, 2);
         }
     }
 }

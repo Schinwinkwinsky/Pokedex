@@ -19,8 +19,8 @@
                    BackgroundColor="Red"/>
             <VerticalStackLayout Grid.Row="1"
                                  Padding="10">
-                <Label Text="Species:" />
-                <Label Text="{Binding Species}"
+                <Label Text="Types:" />
+                <Label Text="{Binding Types}"
                        FontSize="Medium"/>
             </VerticalStackLayout>
         </Grid>        
