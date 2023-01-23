@@ -17,13 +17,36 @@
         <Grid RowDefinitions="2*, 4*">
             <Image Source="{Binding Pokemon.Sprites.Other.OfficialArtwork.FrontDefault}"
                    BackgroundColor="Red"/>
-            <VerticalStackLayout Grid.Row="1"
-                                 Padding="10">
-                <Label Text="Types:" />
-                <Label Text="{Binding Types}"
-                       FontSize="Medium"/>
-            </VerticalStackLayout>
-        </Grid>        
+            
+            <ScrollView Grid.Row="1"
+                        Margin="0,20"
+                        VerticalScrollBarVisibility="Default">
+                <StackLayout Padding="10"
+                         Spacing="10">
+                    <StackLayout>
+                        <Label Text="Types:" />
+                        <Label Text="{Binding Types}"
+                           FontSize="Medium"/>
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="Abilities:" />
+                        <Label Text="{Binding Abilities}"
+                           FontSize="Medium"/>
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="Moves:" />
+                        <Label Text="{Binding Moves}"
+                           FontSize="Medium"/>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+
+            <ActivityIndicator Grid.RowSpan="2"
+                               IsVisible="{Binding IsBusy}" 
+                               IsRunning="{Binding IsBusy}" 
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+        </Grid>
     </ContentPage.Content>
     
 </ContentPage>

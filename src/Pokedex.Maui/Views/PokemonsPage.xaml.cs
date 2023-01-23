@@ -16,6 +16,6 @@ public partial class PokemonsPage : ContentPage
 
 	protected override async void OnNavigatedTo(NavigatedToEventArgs args)
     {
-		await _viewModel.InitializePokemons();
+		await _viewModel.InitializePokemonsAsync();
     }
 }

@@ -18,6 +18,6 @@ public partial class PokemonDetailPage : ContentPage
 	{
 		base.OnNavigatedTo(args);
 
-		await _viewModel.GetPokemonTypes();
+		await _viewModel.InitializePokemonAsync();
 	}
 }

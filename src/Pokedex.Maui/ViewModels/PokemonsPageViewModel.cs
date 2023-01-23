@@ -28,8 +28,7 @@ namespace Pokedex.Maui.ViewModels
             _pokeApiService = pokeApiService;
         }
 
-        [RelayCommand]
-        public async Task InitializePokemons()
+        public async Task InitializePokemonsAsync()
         {
             if (Pokemons.Any())
                 return;
@@ -111,7 +110,7 @@ namespace Pokedex.Maui.ViewModels
 
             var offset = Pokemons.Count();
 
-            var pokemons = await _pokeApiService.GetPokemons(limit, offset);
+            var pokemons = await _pokeApiService.GetPokemonsAsync(limit, offset);
 
             pokemons.ToList().ForEach(p => Pokemons.Add(p));
         }

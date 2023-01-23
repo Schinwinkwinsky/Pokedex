@@ -5,7 +5,7 @@ namespace Pokedex.Maui.Services
 {
     public class PokeApiService : IPokeApiService
     {
-        public async Task<IEnumerable<Pokemon>> GetPokemons(int limit, int offset)
+        public async Task<IEnumerable<Pokemon>> GetPokemonsAsync(int limit, int offset)
         {
             using (var client = new PokeApiClient())
             {
@@ -15,19 +15,27 @@ namespace Pokedex.Maui.Services
             }
         }
 
-        public async Task<PokemonSpecies> GetPokemonSpecies(Pokemon pokemon)
+        public async Task<IEnumerable<Ability>> GetPokemonAbilitiesAsync(Pokemon pokemon)
         {
             using (var client = new PokeApiClient())
             {
-                return await client.GetResourceAsync<PokemonSpecies>(pokemon.Species);
+                return await client.GetResourceAsync<Ability>(pokemon.Abilities.Select(a => a.Ability));
             }
         }
 
-        public async Task<IEnumerable<Type>> GetPokemonTypes(Pokemon pokemon)
+        public async Task<IEnumerable<Move>> GetPokemonMovesAsync(Pokemon pokemon)
         {
             using (var client = new PokeApiClient())
             {
-                return await client.GetResourceAsync(pokemon.Types.Select(t => t.Type));
+                return await client.GetResourceAsync<Move>(pokemon.Moves.Select(m => m.Move));
+            }
+        }
+
+        public async Task<IEnumerable<Type>> GetPokemonTypesAsync(Pokemon pokemon)
+        {
+            using (var client = new PokeApiClient())
+            {
+                return await client.GetResourceAsync<Type>(pokemon.Types.Select(t => t.Type));
             }
         }
     }
