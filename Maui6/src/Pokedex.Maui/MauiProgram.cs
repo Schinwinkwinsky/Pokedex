@@ -10,6 +10,7 @@ public static class MauiProgram
 	public static MauiApp CreateMauiApp()
 	{
 		var builder = MauiApp.CreateBuilder();
+
 		builder
 			.UseMauiApp<App>()
 			.ConfigureFonts(fonts =>
@@ -20,7 +21,7 @@ public static class MauiProgram
 			});
 
         // Initialize MauiToolkit
-        builder.UseMauiApp<App>().UseMauiCommunityToolkit();
+        builder.UseMauiCommunityToolkit();
 
         // Services
         builder.Services.AddSingleton<IPokeApiService, PokeApiService>();		
