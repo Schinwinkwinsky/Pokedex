@@ -10,33 +10,39 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <toolkit:TextCaseConverter x:Key="TextCaseConverter" Type="FirstUpperRestLower"/>
+
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ContentPage.Content>
         <Grid RowDefinitions="2*, 4*">
-            <Image Source="{Binding Pokemon.Sprites.Other.OfficialArtwork.FrontDefault}"
-                   BackgroundColor="Red"/>
+            <Grid BackgroundColor="{StaticResource Primary}"
+                  Padding="0,0,0,20">
+                <Image Source="{Binding Pokemon.Sprites.Other.OfficialArtwork.FrontDefault}" />
+            </Grid>            
             
-            <ScrollView Grid.Row="1"
-                        Margin="0,20"
+            <ScrollView Background="{StaticResource Primary}"
+                        Grid.Row="1"
                         VerticalScrollBarVisibility="Default">
                 <StackLayout Padding="10"
-                         Spacing="10">
+                             Spacing="10">
                     <StackLayout>
                         <Label Text="Types:" />
                         <Label Text="{Binding Types}"
-                           FontSize="Medium"/>
+                               FontSize="Medium" />
                     </StackLayout>
                     <StackLayout>
                         <Label Text="Abilities:" />
                         <Label Text="{Binding Abilities}"
-                           FontSize="Medium"/>
+                               FontSize="Medium"/>
                     </StackLayout>
                     <StackLayout>
                         <Label Text="Moves:" />
                         <Label Text="{Binding Moves}"
-                           FontSize="Medium"/>
+                               FontSize="Medium"/>
                     </StackLayout>
                 </StackLayout>
             </ScrollView>
