@@ -29,11 +29,11 @@ public static class MauiProgram
 
         // ViewModels
         builder.Services.AddSingleton<PokemonsPageViewModel>();
-        builder.Services.AddTransient<PokemonDetailPageViewModel>();
+        builder.Services.AddSingleton<PokemonDetailPageViewModel>();
 
         // Views
-        builder.Services.AddSingleton<PokemonsPage>();
-        builder.Services.AddTransient<PokemonDetailPage>();
+        builder.Services.addsin<PokemonsPage>();
+        builder.Services.AddSingleton<PokemonDetailPage>();
 
 #if DEBUG
         builder.Logging.AddDebug();
